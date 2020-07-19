@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="../static/mainapp/assets/css/style.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Jobs Are Us</title>
+</head>
+
+<body id="loginPage">
+    <header>
+        <div class="row" id="myHeader">
+            <div class="col-md-2 side-col"></div>
+
+            <div class="col-md-1 headerLink" id="burger-menu">
+                <a href="#">
+                    <div class="linkText">More</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="user-welcome">
+                <a href="#" id="userBox" onclick="userBoxToggler()">
+                    <div class="linkText">{{logged.username}}</div>
+                </a>
+                <div class="userCollapse">
+                    {% if logged.company != '' %}
+                    <a href="myjobs" alt="My Jobs">
+                        <section>My Jobs</section>
+                    </a>
+                    {% else %}
+                    <a href="#" alt="My Applications">
+                        <section>My Apps</section>
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="userCollapse"><a href="logoutUser" alt="Log-out"><span>Logout</span></a></div>
+            </div>
+
+            <div class="col-md-1 headerLink" id="messages">
+                <a href="#">
+                    <div class="linkText">Messages</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="contacts">
+                <a href="#">
+                    <div class="linkText">Contacts</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="wanted">
+                <a href="#">
+                    <div class="linkText">Wanted</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 side-col"> </div>
+
+            <div class="col-md-2" id="logo">
+                <a href="main"></a>
+            </div>
+
+            <div class="col-md-2 side-col"></div>
+
+        </div>
+    </header>
+
+    <div class="row" id="myNav">
+        <div class="col-md-2 side-col"></div>
+        <div class="col-md-4 side-col"></div>
+        <div class="col-md-1 navLink" id="my-board">
+            <a href="#">
+                <div class="linkText bottomText">My Board</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="notifications">
+            <a href="#">
+                <div class="linkText bottomText">Notifications</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="statics">
+            <a href="#">
+                <div class="linkText bottomText">Statics</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink navSelected" id="search">
+            <a href="#">
+                <div class="linkText bottomText">Search</div>
+            </a>
+        </div>
+        <div class="col-md-2 side-col"></div>
+    </div>
+
+    <main id="loginMain">
+        <div class="row" id="login-bar">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-8" id="loginBox">
+                <form action="searchResult" id="login" method="POST"> {% csrf_token %}
+                    <div id="userNameInp">
+                        <input type="text" value="" id="freejson" name="freesrc" placeholder="Free search...">
+                    </div>
+                    <div id="passInp">
+                        <input type="text" value="" id="locationjson" autocomplete="on" name="locationsrc"
+                            placeholder="Loaction search...">
+                    </div>
+                    <input type="submit" value="Go!" id="loginButton">
+                </form>
+            </div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+
+        <div class="row spaceLine"></div>
+        <div class="row bottomRowLogin">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-2 underLineLogin">
+                <div>
+                    <h1>2d</h1>
+                    <p>Last time you searched new employees it took only 2 days to find the right one </p>
+                </div>
+            </div>
+            <div class="col-md-1 side-col"></div>
+            <div class="col-md-2 underLineLogin">
+                <h1>9/10</h1>
+                <p>9 out of 10 people wanted to check that enter the website found their job!</p>
+            </div>
+            <div class="col-md-1 side-col"></div>
+            <div class="col-md-2 underLineLogin">
+                <h1>78%</h1>
+                <p>of people on Jobs R Us are happier</p>
+            </div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+
+    </main>
+    <script rel="stylesheet" src="../static/mainapp/assets/js/autocomp.js"></script>
+    <script rel="stylesheet" src="../static/mainapp/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="../static/mainapp/assets/css/style.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
+    <title>Jobs Are Us</title>
+</head>
+
+<body id="loginPage">
+    <header>
+        <div class="row" id="myHeader">
+            <div class="col-md-2 side-col"></div>
+
+            <div class="col-md-1 headerLink" id="burger-menu">
+                <a href="#">
+                    <div class="linkText">More</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="user-welcome">
+                <a href="#" id="notLogged">
+                    <div class="linkText">Login</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="messages">
+                <a href="#">
+                    <div class="linkText">Messages</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="contacts">
+                <a href="#">
+                    <div class="linkText">Contacts</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="wanted">
+                <a href="#">
+                    <div class="linkText">Wanted</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 side-col"> </div>
+
+            <div class="col-md-2" id="logo">
+                <a href="index"></a>
+            </div>
+
+            <div class="col-md-2 side-col"></div>
+
+        </div>
+    </header>
+
+    <div class="row" id="myNav">
+        <div class="col-md-2 side-col"></div>
+        <div class="col-md-4 side-col"></div>
+        <div class="col-md-1 navLink" id="my-board">
+            <a href="#">
+                <div class="linkText bottomText">My Board</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="notifications">
+            <a href="#">
+                <div class="linkText bottomText">Notifications</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="statics">
+            <a href="#">
+                <div class="linkText bottomText">Statics</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="search">
+            <a href="#">
+                <div class="linkText bottomText">Search</div>
+            </a>
+        </div>
+        <div class="col-md-2 side-col"></div>
+    </div>
+
+    <main id="loginMain">
+        <div class="row" id="login-bar">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-8 toReg" id="loginBox">
+                <form action="registerUser" id="register" method="POST">{% csrf_token %}
+                    <div id="userNameInp" class="registerInput">
+                        <input type="text" name="userName" placeholder="User Name" maxlength="20" required>
+                    </div>
+                    <div class="registerInput">
+                        <input type="email" name="emailAddress" placeholder="Email" required>
+                    </div>
+                    <div class="rowReg"></div>
+                    <div class="registerInput">
+                        <input type="password" name="password" placeholder="Password" maxlength="18" required>
+                    </div>
+                    <div class="registerInput">
+                        <input type="password" name="rePassword" placeholder="Confirm Password" maxlength="18" required>
+                    </div>
+                    <div class="rowReg"></div>
+                    <div class="registerInput">
+                        <input type="text" name="location" placeholder="Location" maxlength="40" required>
+                    </div>
+                    <div class="rowReg"></div>
+                    <input type="submit" value="Submit" id="registerButton"><h5 class="form_error">{{FORM_ERROR}}</h5>
+                </form>
+            </div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+
+        <div class="row spaceLine"></div>
+        <div class="row bottomRowLogin">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-2 underLineLogin">
+                <div>
+                    <h1>2d</h1>
+                    <p>Last time you searched new employees it took only 2 days to find the right one </p>
+                </div>
+            </div>
+            <div class="col-md-1 side-col"></div>
+            <div class="col-md-2 underLineLogin">
+                <h1>9/10</h1>
+                <p>9 out of 10 people wanted to check that enter the website found their job!</p>
+            </div>
+            <div class="col-md-1 side-col"></div>
+            <div class="col-md-2 underLineLogin">
+                <h1>78%</h1>
+                <p>of people on Jobs R Us are happier</p>
+            </div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+    </main>
+
+    <script rel="stylesheet" src="../static/mainapp/assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

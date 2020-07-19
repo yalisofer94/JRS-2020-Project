@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="../../static/mainapp/assets/css/style.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
+    <title>Jobs Are Us</title>
+</head>
+
+<body>
+    <header>
+        <div class="row" id="myHeader">
+            <div class="col-md-2 side-col"></div>
+
+            <div class="col-md-1 headerLink" id="burger-menu">
+                <a href="#">
+                    <div class="linkText">More</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="user-welcome">
+                <a href="#" id="userBox" onclick="userBoxToggler()">
+                    <div class="linkText">{{logged.username}}</div>
+                </a>
+                <div class="userCollapse">
+                    {% if logged.company != '' %}
+                    <a href="myjobs" alt="My Jobs">
+                        <section>My Jobs</section>
+                    </a>
+                    {% else %}
+                    <a href="#" alt="My Applications">
+                        <section>My Apps</section>
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="userCollapse"><a href="logoutUser" alt="Log-out"><span>Logout</span></a></div>
+            </div>
+
+            <div class="col-md-1 headerLink" id="messages">
+                <a href="#">
+                    <div class="linkText">Messages</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="contacts">
+                <a href="#">
+                    <div class="linkText">Contacts</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 headerLink" id="wanted">
+                <a href="#">
+                    <div class="linkText">Wanted</div>
+                </a>
+            </div>
+
+            <div class="col-md-1 side-col"> </div>
+
+            <div class="col-md-2" id="logo">
+                <a href="main"></a>
+            </div>
+
+            <div class="col-md-2 side-col"></div>
+
+        </div>
+    </header>
+
+    <div class="row" id="myNav">
+        <div class="col-md-2 side-col"></div>
+        <div class="col-md-4 side-col"></div>
+        <div class="col-md-1 navLink" id="my-board">
+            <a href="#">
+                <div class="linkText bottomText">My Board</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="notifications">
+            <a href="#">
+                <div class="linkText bottomText">Notifications</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink" id="statics">
+            <a href="#">
+                <div class="linkText bottomText">Statics</div>
+            </a>
+        </div>
+        <div class="col-md-1 navLink navSelected" id="search">
+            <a href="#">
+                <div class="linkText bottomText">Search</div>
+            </a>
+        </div>
+        <div class="col-md-2 side-col"></div>
+    </div>
+
+    <main>
+        <div class="row">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 backToSearchRow">
+                <a href="../../job_details/{{jobdetails.id}}" rel="Back" title="Back" class="backSearch">Back to job details</a>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+
+        <div class="row aboveForm">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 companyHeader">
+                <h1 class="companyName" style = "background-image: url('../../static/mainapp/assets/images/{{jobdetails.logo}}');">{{jobdetails.company}}</h1>
+                <h2 class="companyRating">{{jobdetails.rank}}</h2>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+
+        <div class="row formRow">
+            <div class="col-md-2 side-col"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 formHeader border-bottom">
+                <h2>We just wanted to ask...</h2>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2 side-col"></div>
+        </div>
+
+        <form action="jobs_list" method="POST" id="jobApplication">{% csrf_token %}
+            <div class="row formRow">
+                <div class="col-md-2 side-col"></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6 border-bottom">
+                    <label class="applyLabel">
+                        Tell us about the biggest project you have done
+                        <br>
+                        <textarea name="bigProject" rows="5" cols="50" placeholder="Free text..."></textarea>
+                    </label>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 side-col"></div>
+            </div>
+
+            <div class="row formRow">
+                <div class="col-md-2 side-col"></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6 border-bottom">
+                    <section class="checkboxContainer">
+                        Do you know any extra languages?
+                        <br>
+                        <br><label><input name="langs[]" type="checkbox" class="checkboxes" value="html">&nbsp HTML</label>
+                        <br><label><input name="langs[]" type="checkbox" class="checkboxes" value="java script">&nbsp JS</label>
+                        <br><label><input name="langs[]" type="checkbox" class="checkboxes" value="css">&nbsp CSS</label>
+                        <br><label><input name="langs[]" type="checkbox" class="checkboxes" value="python">&nbsp Python</label>
+                    </section>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 side-col"></div>
+            </div>
+
+            <div class="row formRow">
+                <div class="col-md-2 side-col"></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6 border-bottom">
+                    <section class="checkboxContainer">
+                        Which IDEs are you familiar with ?
+                        <br>
+                        <br><label><input name="ides[]" type="checkbox" class="checkboxes" value="vs">&nbsp Visual
+                            Studio</label>
+                        <br><label><input name="ides[]" type="checkbox" class="checkboxes" value="vscode">&nbsp VS
+                            Code</label>
+                        <br><label><input name="ides[]" type="checkbox" class="checkboxes" value="notepad++">&nbsp NotePad++</label>
+                        <br><label><input name="ides[]" type="checkbox" class="checkboxes" value="atom">&nbsp Atom</label>
+                    </section>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 side-col"></div>
+            </div>
+
+            <div class="row formRow">
+                <div class="col-md-2 side-col"></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6 border-bottom">
+                    <label class="applyLabel">
+                        Give us one of your strength points and one of your weakness points
+                        <br><br>
+                        Strength Point... <input type="text" name="strength" class="textBoxes">
+                    </label>
+                    <label class="applyLabel">
+                        Weakness Point... <input type="text" name="weakness" class="textBoxes">
+                    </label>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 side-col"></div>
+            </div>
+
+            <div class="row formRow">
+                <div class="col-md-2 side-col"></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6 border-bottom submitApplication">
+                    <p>We recommend you to fill all of the fields since they are extra point and not minimum requirements
+                    </p>
+                    <input class="applyBtn" type="submit" value="Submit">
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 side-col"></div>
+            </div>
+
+        </form>
+    </main>
+
+    <script rel="stylesheet" src="../static/mainapp/assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
